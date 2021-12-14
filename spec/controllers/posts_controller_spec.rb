@@ -47,11 +47,25 @@ RSpec.describe PostsController, type: :controller do
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
+
+    it "the title is present" do
+      posts ||= []
+      posts.push(create(:post))
+      posts.push(create(:post))
+      posts.push(create(:post))
+      posts.each do |p|
+        p.save
+      end
+      get :index, params: {}, session: valid_session
+      posts.each do |post|
+        expect(response.body).to include(post.title)
+      end
+    end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      post = Post.create! valid_attributes
+      post = Post.create! invalid_attributes
       get :show, params: {id: post.to_param}, session: valid_session
       expect(response).to be_successful
     end

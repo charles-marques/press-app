@@ -39,6 +39,11 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  
+  # Gem to create factories to help us in the tests
+  gem 'factory_bot_rails'
+  # Gem to create random texts and numbers to test app
+  gem 'ffaker'
 end
 
 group :development do
